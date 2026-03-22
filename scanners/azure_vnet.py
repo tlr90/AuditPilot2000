@@ -13,5 +13,15 @@ class Vnet_Scanner:
         self.ai_tool = ai_tool
         self.log_func = log_func
 
+
+    def log(self, message):
+        """
+        Helper to decide where to send text.
+        """
+        if self.log_func:
+            self.log_func(message)
+        else:
+            print(message)
+            
     def audit_vnet(self):
         pass
