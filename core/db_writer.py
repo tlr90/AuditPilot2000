@@ -88,7 +88,8 @@ class MySQL_Writer:
                 "Storage": 1,
                 "VM": 2,
                 "Users": 3,
-                "KeyVault": 4
+                "KeyVault": 4,
+                "Virtual Networks": 5
                 }
             if resource_type and resource_type != "All Types":
                 mapped_id = type_map.get(resource_type)
