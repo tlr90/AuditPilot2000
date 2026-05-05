@@ -6,9 +6,9 @@ class MySQL_Writer:
     """
     Docstring for MySQL_Writer
 
-    This tool takes input from the storage, vm, nsg, and user scanner and saves it to a
+    This tool takes input from the storage, vm, nsg, VNET and user scanner and saves it to a
     local MySQL db.
-    The credentials is saved in a local configuration file.
+    The credentials for the database is saved in a local configuration file.
     The insert is the same for all scanners, so the script is the same but called depending on the resource scanned.
     """
     def __init__(self, log_func=None):
@@ -30,7 +30,7 @@ class MySQL_Writer:
 
     def log(self, message):
         """
-        Helper to decide where to send text.
+        Helper to decide where to send text. GUI or terminal.
         """
         if self.log_func:
             self.log_func(message)
