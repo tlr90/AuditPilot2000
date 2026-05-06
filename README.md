@@ -1,4 +1,5 @@
-AuditPilot2000AuditPilot2000 is a Python-based security tool designed to identify and report configuration drift and security vulnerabilities in cloud environments. 
+AuditPilot2000
+AuditPilot2000 is a Python-based security tool designed to identify and report configuration drift and security vulnerabilities in cloud environments. 
 The project was developed as a practical application of my studies in Network and IT Security at Noroff University College, utilizing AI as a collaborative coding partner to accelerate development and problem-solving.   
 
 🚀 Overview In modern cloud infrastructure, misconfigurations are a leading cause of security breaches. AuditPilot2000 automates the tedious process of auditing cloud settings against security best practices. This project demonstrates the intersection of Cloud Security, Python Programming, and AI-assisted Development.   
