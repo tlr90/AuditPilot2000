@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import threading
 import csv
+from CTkToolTip import CTkToolTip
 from tkinter import messagebox
 from tkinter import filedialog
 from reportlab.lib.pagesizes import letter
@@ -54,32 +55,40 @@ class AzurePilotApp(ctk.CTk):
         # Scanner buttons
         self.btn_storage = ctk.CTkButton(self.sidebar_frame, text="Scan Storage", command=lambda: self.start_scan("storage"))
         self.btn_storage.grid(row=1, column=0, padx=20, pady=10)
+        CTkToolTip(self.btn_storage, message="Check for storage with public access enabled")
 
         self.btn_vm = ctk.CTkButton(self.sidebar_frame, text="Scan VMs/NSG", command=lambda: self.start_scan("vm"))
         self.btn_vm.grid(row=2, column=0, padx=20, pady=10)
+        CTkToolTip(self.btn_vm, message="Check for risky ports associated with NSGs")
 
         self.btn_users = ctk.CTkButton(self.sidebar_frame, text="Scan Entra ID", command=lambda: self.start_scan("users"))
         self.btn_users.grid(row=3, column=0, padx=20, pady=10)
+        CTkToolTip(self.btn_users, message="Check for users without MFA enabled")
 
         self.btn_keyvault = ctk.CTkButton(self.sidebar_frame, text="Scan KeyVault", command=lambda: self.start_scan("keyvault"))
         self.btn_keyvault.grid(row=4, column=0, padx=20, pady=10)
+        CTkToolTip(self.btn_keyvault, message="Check for KeyVaults without expiration date")
         
         self.btn_vnet = ctk.CTkButton(self.sidebar_frame, text="Scan Vnet", command=lambda: self.start_scan("vnet"))
         self.btn_vnet.grid(row=5, column=0, padx=20, pady=10)
+        CTkToolTip(self.btn_vnet, message="Scan for risky open ports, active VNETs without NSGs, peerings, NICs with public IPs")
 
-        # Button for database window
+        # Button for database window to view the security findings
         self.btn_db = ctk.CTkButton(self.sidebar_frame, text="View Findings", command=self.open_findings_window)
         self.btn_db.grid(row=6, column=0, padx=20, pady=10)
+        CTkToolTip(self.btn_db, message="View findings, full analysis, export reports to CSV or PDF")
         
-        # Stop button
+        # Stop button, to interrupt scan or AI
         self.btn_stop = ctk.CTkButton(self.sidebar_frame, text="Stop scan", fg_color="firebrick", hover_color="darkred", command=self.request_stop)
         self.btn_stop.grid(row=7, column=0, padx=20, pady=20)
+        CTkToolTip(self.btn_stop, message="Stop the scan or AI output")
 
         # Theme toggle
         self.appearance_mode_label = ctk.CTkLabel(self.sidebar_frame, text="Theme:", anchor="w")
         self.appearance_mode_label.grid(row=8, column=0, padx=20, pady=(10, 0))
         self.appearance_mode_optionmenu = ctk.CTkOptionMenu(self.sidebar_frame, values=["Dark","Light","System"], command=self.change_appearance_mode)
         self.appearance_mode_optionmenu.grid(row=9, column=0, padx=20, pady=(10, 0))
+        CTkToolTip(self.appearance_mode_optionmenu, message="Select theme for the application")
 
         # Main content area
         self.log_textbox = ctk.CTkTextbox(self, width=700, font=("Consolas", 12))
@@ -155,7 +164,7 @@ class AzurePilotApp(ctk.CTk):
         filter_frame.pack(fill="x", padx=10, pady=10)
 
         # Drop down menu, resource types
-        self.type_filter = ctk.CTkOptionMenu(filter_frame, values=["All Types", "Storage", "VM", "User", "KeyVault"])
+        self.type_filter = ctk.CTkOptionMenu(filter_frame, values=["All Types", "Storage", "VM", "Users", "KeyVault", "Virtual Networks"])
         self.type_filter.pack(side="left", padx=5)
 
         # Filter by date
@@ -197,7 +206,7 @@ class AzurePilotApp(ctk.CTk):
                 ctk.CTkLabel(results_frame, text="No findings found.").pack(pady=20)
                 return
             
-            type_map = {1:"STORAGE",2:"VM",3:"USER", 4:"KEYVAULT"}
+            type_map = {1:"STORAGE",2:"VM",3:"USERS", 4:"KEYVAULT", 5:"VIRTUAL NETWORKS"}
             for rec in self.current_records:
                 card = ctk.CTkFrame(results_frame)
                 card.pack(fill="x", pady=5, padx=5)

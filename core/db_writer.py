@@ -68,6 +68,9 @@ class MySQL_Writer:
     def save_keyVault_finding(self, name, status_id, ai_text):
         self.execute_query(name, 4, status_id, ai_text)
 
+    def save_vnet_finding(self, name, status_id, ai_text):
+        self.execute_query(name, 5, status_id, ai_text)
+
     def fetch_filtered_findings(self, search_text="", resource_type=None, date_range="All Time"):
         conn = None
 
@@ -80,10 +83,11 @@ class MySQL_Writer:
 
             # Free search. Name or advice.
             if search_text:
-                query += " AND (resource_name LIKE %s OR ai_remediation_text LIKE %s)"
-                params.append([f"%{search_text}%", f"%{search_text}%"])
+                query += " AND resource_name LIKE %s OR ai_remediation_text LIKE %s"
+                params.append(f"%{search_text}%")
+                params.append(f"%{search_text}%")
 
-            # Search by resource type
+            # Search by resource type, drop-down menu
             type_map = {
                 "Storage": 1,
                 "VM": 2,
@@ -111,7 +115,6 @@ class MySQL_Writer:
             return cursor.fetchall()
         
         except Exception as e:
-            
             self.log_func(f"Database error: {e}")
             return []
         

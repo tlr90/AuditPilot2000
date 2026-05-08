@@ -68,7 +68,7 @@ class Storage_scanner:
                     # Prompt sent to the AI tool for advice and command fixes.
                     prompt = (
                         f"STRICT INSTRUCTION: Analyze the Azure Storage Account named '{account.name}'. "
-                        f"This account has Public Access enabled. Explain the security risk of "
+                        f"This account has Public Access enabled. Shortly explain the security risk of "
                         f"anonymous access and provice the specific Azure CLI/Powershell to disable it. "
                         f"Do not define the name of the account; provide only security advice."
                     )

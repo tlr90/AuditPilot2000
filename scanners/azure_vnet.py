@@ -39,7 +39,7 @@ class Vnet_Scanner:
                                     "Provide the specific Azure CLI/Powershell to mitigate this."
                                 )
                                 ai_advice = self.ai_tool.ask_ai_for_remidiation(prompt)
-                                self.db_writer(nsg.name, 5, ai_advice)
+                                self.db_writer.save_vnet_finding(nsg.name, 1, ai_advice)
                                 self.log_func("Findings saved successfully!\n")
             
             # Check for active VNETs and associated network security groups
@@ -53,7 +53,7 @@ class Vnet_Scanner:
                             "Provide the specific Azure CLI/Powershell to mitigate this."
                         )            
                         ai_advice = self.ai_tool.ask_ai_for_remidiation(prompt)
-                        self.db_writer(vnet.name, 5, ai_advice)
+                        self.db_writer.save_vnet_finding(vnet.name, 1, ai_advice)
                         self.log_func("Findings saved successfully!\n")
 
             # Check for network peerings
@@ -67,7 +67,7 @@ class Vnet_Scanner:
                                 "Provide the specific Azure CLI/Powershell to mitigate this."
                             )
                             ai_advice = self.ai_tool.ask_ai_for_remidiation(prompt)
-                            self.db_writer(vnet.name, 5, ai_advice)
+                            self.db_writer.save_vnet_finding(vnet.name, 1, ai_advice)
                             self.log_func("Findings saved successfully!\n")
             
             # Scan network interface cards for public facing IP addresses
@@ -81,7 +81,7 @@ class Vnet_Scanner:
                             "Provide the specific Azure CLI/Powershell to mitigate this."
                         )
                         ai_advice = self.ai_tool.ask_ai_for_remidiation(prompt)
-                        self.db_writer(nic.name, 5, ai_advice)
+                        self.db_writer.save_vnet_finding(nic.name, 1, ai_advice)
                         self.log_func("Findings saved successfully!\n")
         except Exception as e:
             self.log_func(f"Error: {e}")
