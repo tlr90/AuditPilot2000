@@ -21,7 +21,7 @@ class AzurePilotApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("AzurePilot Security Dashboard")
+        self.title("AuditPilot 2000 Security Dashboard")
         self.geometry("1100x600")
         ctk.set_appearance_mode("dark")
     
@@ -49,7 +49,7 @@ class AzurePilotApp(ctk.CTk):
         self.sidebar_frame.grid(row=0, column=0, sticky="nsew")
         self.sidebar_frame.grid_rowconfigure(6, weight=1)
 
-        self.logo_label = ctk.CTkLabel(self.sidebar_frame, text="AZURE PILOT", font=ctk.CTkFont(size=20, weight="bold"))
+        self.logo_label = ctk.CTkLabel(self.sidebar_frame, text="AUDIT PILOT 2000", font=ctk.CTkFont(size=20, weight="bold"))
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
         # Scanner buttons
