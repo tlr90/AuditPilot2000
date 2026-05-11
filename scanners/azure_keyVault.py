@@ -48,7 +48,8 @@ class KeyVault_scanner:
 
                         prompt = (
                             f"Azure Key Vault secret '{secret.name} has no expiration date set."
-                            f"Explain shortly the security risk and provide the Azure CLI and Azure PowerShell command to set an expiry date."
+                            f"Explain shortly the security risk and provide the Azure CLI" 
+                            f"and Azure PowerShell command to set an expiry date."
                         )
                         ai_advice = self.ai_tool.ask_ai_for_remidiation(prompt)
 
