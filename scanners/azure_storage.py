@@ -33,7 +33,7 @@ class Storage_scanner:
     def log(self, message):
         """
         Helper to decide where to send text.
-        This function helps send text to the dashboard app or terminal.
+        This function helps send text to the dashboard textbox or terminal.
         """
         if self.log_func:
             self.log_func(message)
@@ -74,7 +74,7 @@ class Storage_scanner:
                     )
                     ai_advice = self.ai_tool.ask_ai_for_remidiation(prompt)
                     
-                    # Write the findings to the database. Only insecure findings.
+                    # Write the findings to the database. Only insecure findings are saved.
                     self.dbWriter.save_storage_finding(account.name, 1, ai_advice)
                     self.log_func("Findings saved successfully!\n")
                 

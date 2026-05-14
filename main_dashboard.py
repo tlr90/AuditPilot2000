@@ -230,7 +230,7 @@ class AzurePilotApp(ctk.CTk):
         btn_pdf = ctk.CTkButton(export_frame, text="Export PDF", fg_color="gray25", command=lambda: self.export_pdf(self.current_records))
         btn_pdf.pack(side="left", padx=10, pady=5)
 
-    # Display the AI advice
+    # Display the AI advice in the history/records
     def show_advice_detail(self, record):
         detail_win = ctk.CTkToplevel(self)
         detail_win.title(f"Audit Detail: {record[1]}")
